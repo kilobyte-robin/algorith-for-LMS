@@ -1,45 +1,18 @@
-public class Librarian {
-    private int id;
-    private String name;
-
-
-    public void addBook(Book book) {
-        LibraryDatabase db = new LibraryDatabase();
-        db.add(book);
+public class Librarian extends Customer {
+    // Additional Methods for Librarian
+    public boolean addBook(String title, String genre, String author) {
+        return Database.addBook(title, genre, author);
     }
 
-    public void updateBook(Book book) {
-        LibraryDatabase db = new LibraryDatabase();
-        db.update(book);
+    public boolean updateBook(int bookId, String title, String genre, String author) {
+        return Database.updateBook(bookId, title, genre, author);
     }
 
-    public void removeBook(int bookId) {
-        LibraryDatabase db = new LibraryDatabase();
-        db.delete(bookId);
+    public boolean removeBook(int bookId) {
+        return Database.removeBook(bookId);
     }
 
-    public void verifyMember(String userName) {
-        System.out.println("Verifying customer: " + userName);
-        // Add verification logic (DB check)
+    public void searchBook(String keyword) {
+        Database.searchBooks(keyword);
     }
-
-    public void searchBook(String title) {
-        // Call to LibraryDatabase class to search
-        LibraryDatabase db = new LibraryDatabase();
-        db.search(title);
-    }
-
-    public boolean issueBook(int bookId) {
-        LibraryDatabase db = new LibraryDatabase();
-        return db.updateBookStatus(bookId, true); // Issue book
-    }
-
-    public boolean returnBook(int bookId) {
-        LibraryDatabase db = new LibraryDatabase();
-        return db.updateBookStatus(bookId, false); // Return book
-    }
-
-    public void logout() {
-            System.out.println("Logged out successfully.");
-        }
 }

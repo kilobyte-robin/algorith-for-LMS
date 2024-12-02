@@ -1,25 +1,41 @@
 public class Customer {
-    private String userName;
+
+    private int userId;
+    private String name;
+    private String username;
     private String password;
+    private int idNumber;
+    private String status;
+    private int booksBorrowed;
+    private int booksReturned;
+    private int booksOverdue;
 
-    public boolean login(String userName, String password) {
-        // Replace with DB check logic
-        return this.userName.equals(userName) && this.password.equals(password);
-    }
 
-    public void searchBook(String title) {
-        // Call to LibraryDatabase class to search
-        LibraryDatabase db = new LibraryDatabase();
-        db.search(title);
+    public boolean searchBook(String keyword) {
+        return Database.searchBooks(keyword);
     }
 
     public boolean issueBook(int bookId) {
-        LibraryDatabase db = new LibraryDatabase();
-        return db.updateBookStatus(bookId, true); // Issue book
+        return Database.issueBook(bookId, userId);
+    }
+
+    public boolean reserveBook(int bookId) {
+        return Database.reserveBook(bookId, userId);
+    }
+
+    public boolean renewBook(int bookId) {
+        return Database.renewBook(bookId, userId);
     }
 
     public boolean returnBook(int bookId) {
-        LibraryDatabase db = new LibraryDatabase();
-        return db.updateBookStatus(bookId, false); // Return book
+        return Database.returnBook(bookId, userId);
+    }
+
+    public boolean payFine(double amount) {
+        return Database.payFine(userId, amount);
+    }
+
+    public void viewBorrowedBooks() {
+        Database.displayUserBorrowedBooks(userId);
     }
 }

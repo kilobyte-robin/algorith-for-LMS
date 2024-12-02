@@ -1,52 +1,46 @@
-import java.util.ArrayList;
-import java.util.List;
-
 public class LibraryDatabase {
-    private final List<Book> books = new ArrayList<>();
-
-    public void add(Book book) {
-        books.add(book);
-        System.out.println("Book added: " + book.title);
+    // CRUD Operations
+    public static boolean addUser(String name, String username, String password, String phone, String email) {
+        // Insert user into DB
     }
 
-    public void delete(int bookId) {
-        books.removeIf(book -> book.bookId == bookId);
-        System.out.println("Book removed with ID: " + bookId);
+    public static boolean validateUser(String username, String password) {
+        // Validate user credentials in DB
     }
 
-    public void update(Book updatedBook) {
-        for (Book book : books) {
-            if (book.bookId == updatedBook.bookId) {
-                book.title = updatedBook.title;
-                book.genre = updatedBook.genre;
-                book.author = updatedBook.author;
-                System.out.println("Book updated: " + book.title);
-                break;
-            }
-        }
+    public static String getUserPhoneNumber(int userId) {
+        // Query DB for user's phone number
     }
 
-    public void search(String title) {
-        for (Book book : books) {
-            if (book.title.equalsIgnoreCase(title)) {
-                book.displayBook();
-            }
-        }
+    public static boolean addBook(String title, String genre, String author) {
+        // Insert book into DB
     }
 
-    public void display() {
-        for (Book book : books) {
-            book.displayBook();
-        }
+    public static boolean updateBook(int bookId, String title, String genre, String author) {
+        // Update book in DB
     }
 
-    public boolean updateBookStatus(int bookId, boolean isBorrowed) {
-        for (Book book : books) {
-            if (book.bookId == bookId) {
-                book.updateBookStatus(isBorrowed);
-                return true;
-            }
-        }
-        return false;
+    public static boolean removeBook(int bookId) {
+        // Delete book from DB
+    }
+
+    public static boolean issueBook(int bookId, int userId) {
+        // Mark book as issued in DB
+    }
+
+    public static boolean reserveBook(int bookId, int userId) {
+        // Add reservation to DB
+    }
+
+    public static boolean returnBook(int bookId, int userId) {
+        // Update book return status in DB
+    }
+
+    public static boolean payFine(int userId, double amount) {
+        // Update fine payment in DB
+    }
+
+    public static void displayUserBorrowedBooks(int userId) {
+        // Query and display borrowed books from DB
     }
 }
